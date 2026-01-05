@@ -41,7 +41,7 @@
  * │   ├─ معاينة صورة الغلاف بعد اختيارها.
  * │   └─ زر الإرسال (مع تعطيله أثناء التحميل).
  */
-import React, { usState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth } from "../auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 

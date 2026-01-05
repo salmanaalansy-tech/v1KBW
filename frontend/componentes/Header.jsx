@@ -123,7 +123,7 @@ function Header() {
   };
 
   return (
-    <div className=" mb-24   xl:mb-28 ">
+    <div className=" mb-24  xl:mb-28 ">
       <nav
         className={`
           fixed top-0 left-0 w-full z-50 transition-all duration-500 
@@ -146,11 +146,12 @@ function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <img
-              src="/logo/images.jpg"
+              src="logo/images.jpg"
               alt="Khalid bin Al-Walid Library"
-              className="h-16 object-contain"
+              className="h-[120px]  object-contain"
             />
           </Link>
+          
 
           {/* Nav Links */}
           <div className="flex items-center gap-8">
@@ -180,9 +181,9 @@ function Header() {
           {/* Logo / Home */}
           <Link to="/" className="flex items-center gap-2">
             <img
-              src="/logo/images.jpg"
+              src="/logo/images2.jpg"
               alt="Home"
-              className="h-10 object-contain"
+              className="h-18 object-contain"
             />
           </Link>
           {/* Right Section */}
