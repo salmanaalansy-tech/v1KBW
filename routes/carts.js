@@ -47,7 +47,7 @@ router.post("/add", cookieAuth, async (req, res) => {
     }
 
     const itemIndex = cart.items.findIndex(
-      (item) => item.toString() === bookId
+      (item) => item.book._id.toString() === bookId
     );
 
     if (itemIndex > -1) {
@@ -56,8 +56,8 @@ router.post("/add", cookieAuth, async (req, res) => {
       cart.items.push({ book: bookId, price: book.price, quantity: 1 });
     }
     book.stock -= 1;
-    book.save();
-    cart.save();
+    await book.save();
+    await cart.save();
 
     return res.json({ success: true, cart });
   } catch (error) {
@@ -69,8 +69,7 @@ router.post("/add", cookieAuth, async (req, res) => {
 
 router.put("/update", cookieAuth, async (req, res) => {
   try {
-    // quantity
-    const { bookId } = req.body;
+    const { bookId, quantity } = req.body;
 
     let cart = await Cart.findOne({ user: req.user.id }).populate(
       "items.book",
@@ -83,15 +82,18 @@ router.put("/update", cookieAuth, async (req, res) => {
 
     const item = cart.items.find((item) => item.book._id.toString() === bookId);
 
-    const book = await Book.findById(bookId);
+    if (!item) {
+      return res.status(404).json({ message: "Item not found in cart" });
+    }
 
+    const book = await Book.findById(bookId);
     const diff = quantity - item.quantity;
 
     if (diff > 0) {
       if (book.stock < diff)
-        return res.status(400).json({ message: "Not Enouth stock" });
+        return res.status(400).json({ message: "Not enough stock" });
+      book.stock -= diff;
     } else {
-      // chinge value - to +
       book.stock += Math.abs(diff);
     }
 
@@ -107,9 +109,9 @@ router.put("/update", cookieAuth, async (req, res) => {
   }
 });
 
-router.delete("/remove", cookieAuth, async (req, res) => {
+router.delete("/remove/:bookId", cookieAuth, async (req, res) => {
   try {
-    const { bookId } = req.body;
+    const { bookId } = req.params;
 
     let cart = await Cart.findOne({ user: req.user.id }).populate(
       "items.book",
@@ -121,17 +123,18 @@ router.delete("/remove", cookieAuth, async (req, res) => {
     }
 
     const itemIndex = cart.items.findIndex(
-      (item) => item.book.toString() === bookId
+      (item) => item.book._id.toString() === bookId
     );
 
     if (itemIndex === -1) {
       return res.status(404).json({ message: "Item not found in cart " });
     }
+    
     const item = cart.items[itemIndex];
     const book = await Book.findById(bookId);
 
     if (book) {
-      book.stock += 1;
+      book.stock += item.quantity; // Correctly return the quantity of the item
       await book.save();
     }
 
