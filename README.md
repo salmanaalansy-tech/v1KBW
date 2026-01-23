@@ -87,6 +87,40 @@
    MONGO_URI=your_mongodb_uri
    JWT_SECRET=your_super_secret_key
    
+### ربط قاعدة البيانات MongoDB
+
+لربط المشروع بقاعدة بيانات MongoDB، اتبع الخطوات التالية:
+
+1. **إعداد قاعدة البيانات:**
+   - إذا كنت تستخدم MongoDB محليًا، تأكد من تشغيل خدمة MongoDB على جهازك.
+   - إذا كنت تستخدم MongoDB Atlas، قم بإنشاء Cluster جديد واحصل على رابط الاتصال (Connection String).
+
+2. **إعداد المتغيرات البيئية:**
+   - افتح ملف `.env` في جذر المشروع.
+   - أضف رابط الاتصال الخاص بقاعدة البيانات:
+
+     ```env
+     MONGO_URI=your_mongodb_connection_string
+     ```
+
+3. **استدعاء الاتصال في الخادم:**
+   - افتح ملف `server.js`.
+   - أضف واستدعي وظيفة الاتصال:
+
+
+     const connectDB = require('./config/db');
+
+     // Connect to MongoDB
+     connectDB();
+     ```
+
+5. **تشغيل المشروع:**
+   - قم بتشغيل الخادم باستخدام الأمر:
+
+     ```bash
+     npm run dev
+     ```
+   
 
    تشغيل الخادم:
 
@@ -94,7 +128,7 @@
    npm run dev
    
 
-3. **إعداد الواجهة الأمامية (Frontend):**
+4. **إعداد الواجهة الأمامية (Frontend):**
 
    
    cd frontend
