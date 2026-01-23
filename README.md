@@ -41,21 +41,22 @@
 | **الأمان**           | JWT (JSON Web Tokens)، تشفير كلمات المرور بـ Bcrypt       |
 | **التخزين**          | Multer (رفع الصور)                                        |
 
----| المسار                  | الوصف                                              |
-| ----------------------- | -------------------------------------------------- |
-| `auth/`                 | وسيط التوثيق في الخادم الخلفي (Backend Middleware) |
-| `config/`               | إعدادات الاتصال بقاعدة البيانات (مثل: `db.js`)     |
-| `frontend/`             | تطبيق الواجهة الأمامية باستخدام React + Vite       |
-| `frontend/Admin/`       | مكوّنات لوحة التحكّم الخاصة بالإدارة               |
-| `frontend/auth/`        | منطق التوثيق في الواجهة الأمامية                   |
-| `frontend/componentes/` | مكوّنات واجهة مستخدم مشتركة                        |
-| `frontend/pages/`       | الصفحات الأساسية للتطبيق                           |
-| `images/`               | مجلد أغلفة الكتب والصور المرفوعة                   |
-| `models/`               | مخططات Mongoose (Book، Category، User، Cart)       |
-| `routes/`               | مسارات واجهة برمجة التطبيقات (Express API)         |
-| `server.js`             | نقطة تشغيل الخادم الرئيسية                         |
-
 ---
+📂 هيكلية المشروع
+| Path                    | Description                                      |
+| ----------------------- | ------------------------------------------------ |
+| `auth/`                 | Backend authentication middleware                |
+| `config/`               | Database connection configuration (e.g. `db.js`) |
+| `frontend/`             | Frontend application built with React + Vite     |
+| `frontend/Admin/`       | Admin dashboard components                       |
+| `frontend/auth/`        | Authentication logic on the frontend             |
+| `frontend/componentes/` | Shared UI components                             |
+| `frontend/pages/`       | Main application pages                           |
+| `images/`               | Book covers and uploaded images directory        |
+| `models/`               | Mongoose schemas (Book, Category, User, Cart)    |
+| `routes/`               | Express API routes                               |
+| `server.js`             | Main server entry point                          |
+-
 
 ## ⚙️ البدء والتشغيل
 
