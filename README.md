@@ -74,7 +74,7 @@ khalid-library-v1.0/
 1. **استنساخ المستودع:**
 
    
-   git clone [repository-url]
+   git clone [https://github.com/salmanaalansy-tech/v1KBW.git]
    cd khalid-library-v1.0
    
 
